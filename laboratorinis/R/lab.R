@@ -1,5 +1,3 @@
-setwd("C:/Users/gabij/Desktop/Mokslai/4SEMESTRAS/Programavimas_viz/KTU-duomenu-vizualizacija/laboratorinis")
-
 library(tidyverse)
 
 # duomenu skaitymas
