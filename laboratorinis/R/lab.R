@@ -24,15 +24,21 @@ dev.off()
 # menesio isskyrimas is datos kintamojo
 data <- data %>% mutate(month_value=as.integer(substr(month, 5 ,7)))
 # top 5 imoniu atrinkimas pagal avgWage
-topcompanies<-data %>% group_by(name) %>% slice_max(avgWage, n=1) %>% ungroup() %>%
-        top_n(avgWage, n=5) %>% select(name)
+topcompanies<-data %>% 
+        group_by(name) %>% 
+        slice_max(avgWage, n=1) %>% 
+        ungroup() %>%
+        top_n(avgWage, n=5) %>% 
+        select(name)
+
 # top 5 imoniu duomenu atrinkimas 
 top5 <- data %>% filter(name %in% topcompanies$name)
+
 # antrojo grafiko kodas
 ggplot(top5, aes(x=month_value, y=avgWage, col=name))+
         geom_line()+
         geom_point()+
-        scale_x_continuous("month",breaks=1:12,limits=c(1,12))+
+        scale_x_continuous(breaks=1:12,limits=c(1,12))+
         theme_bw()+
         labs(title= "Average wage of employees by month",
              x="Month", y="Average Wage")
